@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "onMatch method for telegrambo library",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "node --env-file .env ./test.js"
   },
@@ -13,5 +14,16 @@
     "match"
   ],
   "author": "HeadMad",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeadMad/telegrambo-on-match.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HeadMad/telegrambo-on-match/issues"
+  },
+  "homepage": "https://github.com/HeadMad/telegrambo-on-match#readme",
+  "license": "MIT",
+  "devDependencies": {
+    "telegrambo": "^0.5.6"
+  }
 }
