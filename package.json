@@ -1,6 +1,6 @@
 {
   "name": "telegrambo-on-match",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "onMatch method for telegrambo library",
   "main": "index.js",
   "type": "module",
