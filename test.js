@@ -1,34 +1,17 @@
-import {nodeBotAsync} from 'telegrambo';
+import telegrambo from 'telegrambo';
+import polling from 'telegrambo-polling';
 import onMatch from './index.js';
 
-const bot = nodeBotAsync(process.env.BOT_TOKEN);
-bot.match = onMatch(bot, '::');
+const bot = telegrambo(process.env.BOT_TOKEN);
+bot.polling = polling;
 
-bot.match('message::text::hello', (ctx, match, event) => {
+bot.match = onMatch('::');
+
+bot.match('message::text::/hello/i', (event, match, eventName) => {
   console.log({event, match});
-  ctx.sendMessage({
-    text: ctx.message.text
+  event.sendMessage({
+    text: event.message.text
   });
 });
 
-(async () => {
-  let offset = 0;
-  let timeout = 60;
-  while (true) {
-    const {ok, result} = await bot.getUpdates({
-      offset,
-      timeout
-    });
-
-    if (!ok)
-      break;
-    
-    if (!result.length)
-      continue;
-    
-    offset = result.at(-1).update_id + 1;
-
-    for (let update of result)
-      bot.setUpdate(update);
-  }
-})();
+bot.polling();

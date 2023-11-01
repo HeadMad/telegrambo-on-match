@@ -2,27 +2,26 @@
 
 ## Installation
 
-You can install Telegrambo using npm:
+You can install Telegrambo On Match using npm:
 
-`npm install telegrambo-on-match` or `npm install headmad/telegrambo-on-match`
+`npm install telegrambo-on-match`
 
 ## Usage
 ```js
 // bot.js
-import { nodeBotAsync } from 'telegrambo';
+import telegrambo from 'telegrambo';
 import onMatch  from 'telegrambo-on-match';
 
-const bot = nodeBotAsync(process.env.YOU_BOT_TOKEN);
+const bot = telegrambo(process.env.YOU_BOT_TOKEN);
 
 // Initialize new method
-bot.match = onMatch(bot, '::');
+bot.match = onMatch('::');
 ```
 
 Creates a callback function to handle a specific match.
 
 **Parameters:**
 
-- `bot` (BotContext ): The bot instance.
 - `matchSeparator` (string, optional): The separator used to split the match string into an array. Defaults to `'::'`.
 
 **Returns:**
@@ -33,8 +32,8 @@ Creates a callback function to handle a specific match.
 
 ```js
 // If user send photo
-bot.match('message::photo', (ctx, match, eventName) => {
-  ctx.sendMessage({
+bot.match('message::photo', (event, match, eventName) => {
+  event.sendMessage({
     text: 'Great photo!'
   });
 });
@@ -59,14 +58,14 @@ This filter is very powerfull. You can check endpoints for a match or regular ex
 <br>If You whant change match separator from '::' to your, pass as second argument new separator: 
 
 ```js
-import { nodeBotAsync } from 'telegrambo';
+import telegrambo from 'telegrambo';
 import onMatch  from 'telegrambo-on-match';
 
-const bot = nodeBotAsync(process.env.YOU_BOT_TOKEN);
-bot.match = onMatch(bot, '--');
+const bot = telegrambo(process.env.YOU_BOT_TOKEN);
+bot.match = onMatch('--');
 
-bot.on('message--text--/\\/\\w+/i', (ctx, match) => {
-  ctx.sendMessage({
+bot.on('message--text--/\\/\\w+/i', (event, match) => {
+  event.sendMessage({
     text: 'You send me command <b>${match}</b>'
   });
 });

@@ -7,9 +7,8 @@ export default onMatch;
  * @param {string} matchSeparator - The separator used to split the match string into an array.
  * @return {function} A callback function that handles the match.
  */
-function onMatch(bot, matchSeparator = '::') {
-  return function (matchString, matchHandler) {
-
+function onMatch(matchSeparator = '::') {
+  return (bot) => function (matchString, matchHandler) {
     const matchChain = matchString.split(matchSeparator);
     const event = matchChain[0] ? matchChain[0] : null;
 
